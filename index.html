@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
@@ -330,9 +330,9 @@ footer{padding:48px var(--pad-x);text-align:center}
     <a onclick="closeMenu();go('inv-gen')" data-i18n="nav-inv">Invitations</a>
     <a onclick="closeMenu();openCal()" data-i18n="nav-cal">Calendrier</a>
     <div class="lang-sw">
-      <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
       <button class="lang-btn" onclick="setLang('ar')">AR</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
     </div>
   </div>
   <button class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
@@ -458,7 +458,7 @@ footer{padding:48px var(--pad-x);text-align:center}
     <div class="inv-row">
       <div><label data-i18n="inv-l-title">Titre</label><input type="text" id="g-title" placeholder="M. & Mme"/></div>
       <div><label data-i18n="inv-l-lang">Langue</label>
-        <select id="g-lang"><option value="fr">Français</option><option value="ar">العربية</option><option value="en">English</option></select>
+        <select id="g-lang"><option value="en">English</option><option value="fr">Français</option><option value="ar">العربية</option></select>
       </div>
     </div>
     <label data-i18n="inv-l-email">Email (optionnel)</label>
@@ -625,7 +625,7 @@ en:{
 
 
 /* i18n */
-let lang='fr';
+let lang='en';
 function setLang(l){lang=l;const t=i18n[l];
   document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.getAttribute('data-i18n');if(t[k]!==undefined)e.innerHTML=t[k];});
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
@@ -633,6 +633,9 @@ function setLang(l){lang=l;const t=i18n[l];
   const s=document.getElementById('m-sub');
   if(s)s.innerHTML=l==='ar'?'زفاف آسية و رضوان · 11 يوليوز 2026 · 18:00<br>تيفاوين ريزورت، خنيفرة':l==='en'?"Assia & Radouane · 11 July 2026 · 6 PM<br>Tifawin Resort, Khenifra":"Mariage Assia &amp; Radouane · 11 Juillet 2026 · 18h00<br>Tifawin Resort, Khenifra";
 }
+/* default language: English */
+setLang('en');
+const gl=document.getElementById('g-lang');if(gl)gl.value='en';
 
 /* reveal */
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
